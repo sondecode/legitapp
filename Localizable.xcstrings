@@ -664,6 +664,18 @@
         }
       }
     },
+    "%lld services running" : {
+
+    },
+    "%lld updates" : {
+
+    },
+    "1 service running" : {
+
+    },
+    "1 update" : {
+
+    },
     "3 days" : {
       "comment" : "App catalog frequency option",
       "localizations" : {
@@ -1006,6 +1018,9 @@
     },
     "All currently installed apps will be unlinked from LegitApp." : {
       "comment" : "Brew reinstallation alert warning"
+    },
+    "All good" : {
+
     },
     "All other app functions will be disabled during the update!" : {
       "comment" : "Brew update notice",
@@ -6362,45 +6377,7 @@
       "comment" : "Hero banner subtitle"
     },
     "Quit" : {
-      "comment" : "Quit Applite button",
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quitter"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kilépés"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "終了"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Thoát"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "退出"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "退出"
-          }
-        }
-      }
+
     },
     "Refresh" : {
       "comment" : "Update refresh button",
@@ -7702,6 +7679,51 @@
     },
     "This will uninstall all files and cache associated with LegitApp." : {
       "comment" : "Uninstall LegitApp window description"
+    },
+    "Thoát" : {
+      "comment" : "Quit Applite button",
+      "extractionState" : "stale",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quitter"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kilépés"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終了"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thoát"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出"
+          }
+        }
+      }
+    },
+    "Thoát LegitApp" : {
+
     },
     "Troubleshooting" : {
       "comment" : "Applite troubleshooting website link",

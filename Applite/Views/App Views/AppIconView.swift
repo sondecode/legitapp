@@ -21,6 +21,7 @@ struct AppIconView: View {
     let iconURL: URL
     let faviconURL: URL
     let cacheKey: String
+    var size: CGFloat = 54
 
     var body: some View {
         if state != .failed {
@@ -44,18 +45,18 @@ struct AppIconView: View {
                         state = .failed
                     }
                 }
-                .frame(width: 54, height: 54)
+                .frame(width: size, height: size)
         } else {
             // App icon missing
             ZStack {
                 RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .stroke(.gray, lineWidth: 3)
+                    .stroke(.gray, lineWidth: size / 15)
 
                 Text("?")
-                    .font(.system(size: 24, weight: .light))
+                    .font(.system(size: size * 0.45, weight: .light))
             }
             .foregroundStyle(.gray)
-            .frame(width: 40, height: 40)
+            .frame(width: size, height: size)
         }
     }
 }

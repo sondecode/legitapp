@@ -21,9 +21,9 @@ struct MenuBarCaskRow: View {
                 AppIconView(
                     iconURL: iconURL,
                     faviconURL: faviconURL,
-                    cacheKey: cask.info.token
+                    cacheKey: cask.info.token,
+                    size: 22
                 )
-                .frame(width: 22, height: 22)
             }
 
             Text(cask.info.name)
@@ -36,8 +36,10 @@ struct MenuBarCaskRow: View {
                     .scaleEffect(0.6)
                     .frame(width: 28, height: 20)
             } else {
-                Button("Update") {
+                Button {
                     Task { caskManager.update(cask) }
+                } label: {
+                    Text("Update")
                 }
                 .buttonStyle(.borderless)
                 .foregroundStyle(Color.accentColor)

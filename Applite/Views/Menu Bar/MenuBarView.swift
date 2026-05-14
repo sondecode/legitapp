@@ -120,8 +120,10 @@ struct MenuBarView: View {
 
                         let totalOutdated = caskManager.outdatedCasks.casks.count
                         if totalOutdated > 5 {
-                            Button("Update All (\(totalOutdated) apps)") {
+                            Button {
                                 Task { caskManager.updateAll(Array(caskManager.outdatedCasks.casks)) }
+                            } label: {
+                                Text("Update All (\(totalOutdated) apps)")
                             }
                             .buttonStyle(.borderless)
                             .foregroundStyle(Color.accentColor)
@@ -149,12 +151,14 @@ struct MenuBarView: View {
 
                 Spacer()
 
-                Button("Quit") {
+                Button {
                     NSApplication.shared.terminate(nil)
+                } label: {
+                    Text("Thoát LegitApp")
                 }
                 .buttonStyle(.borderless)
                 .font(.callout)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.red)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
@@ -170,12 +174,18 @@ struct MenuBarView: View {
         let updateCount = caskManager.outdatedCasks.casks.count
         var parts: [String] = []
         if serviceCount > 0 {
-            parts.append("\(serviceCount) service\(serviceCount == 1 ? "" : "s") running")
+            let serviceString = serviceCount == 1 
+                ? String(localized: "1 service running")
+                : String(localized: "\(serviceCount) services running")
+            parts.append(serviceString)
         }
         if updateCount > 0 {
-            parts.append("\(updateCount) update\(updateCount == 1 ? "" : "s")")
+            let updateString = updateCount == 1
+                ? String(localized: "1 update")
+                : String(localized: "\(updateCount) updates")
+            parts.append(updateString)
         }
-        return parts.isEmpty ? "All good" : parts.joined(separator: " · ")
+        return parts.isEmpty ? String(localized: "All good") : parts.joined(separator: " · ")
     }
 }
 
