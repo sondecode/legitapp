@@ -34,7 +34,7 @@ extension AppView {
                     }
                     .buttonStyle(.plain)
 
-                    Text(cask.info.description)
+                    Text(cask.displayedDescription)
                         .foregroundColor(.secondary)
                 }
                 

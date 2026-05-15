@@ -17,6 +17,9 @@ final class Cask: ObservableObject {
     /// Number of downloads in the last 365 days
     let downloadsIn365days: Int
 
+    /// Description shown in the UI. Can be localized or custom.
+    let displayedDescription: String
+
     // MARK: Published properties
     @Published var isInstalled: Bool = false
 
@@ -32,6 +35,7 @@ final class Cask: ObservableObject {
         self.info = info
         self.downloadsIn365days = downloadsIn365days
         self.isInstalled = isInstalled
+        self.displayedDescription = info.description
     }
 
     static let dummy = Cask(info: CaskInfo(

@@ -34,12 +34,26 @@ LegitApp được fork từ [Applite](https://github.com/sondecode/applite) và 
 
 [Download DMG](https://github.com/sondecode/legitapp/releases/latest/download/LegitApp.dmg)
 
-Hoặc cài qua Homebrew:
+Hoặc cài qua Homebrew (khuyên dùng, không cần bước xử lý thêm):
 ```bash
+brew tap sondecode/legitapp
 brew install --cask legitapp
 ```
 
 Yêu cầu tối thiểu: **macOS 14 Sonoma+**
+
+## Xử lý cảnh báo macOS
+
+> **LegitApp chưa được ký bởi Apple Developer Program.** macOS có thể hiển thị cảnh báo ở lần mở đầu tiên khi bạn tải file DMG thủ công.
+
+**Cách 1 (Khuyên dùng):** Chuột phải vào `LegitApp.app` → chọn **Open** → nhấn **Open** trong hộp thoại xác nhận.
+
+**Cách 2:** Mở **Terminal** và chạy lệnh sau, sau đó mở app bình thường:
+```bash
+sudo xattr -rd com.apple.quarantine /Applications/LegitApp.app
+```
+
+**Cách 3 (không cần bước trên):** Cài qua Homebrew Tap ở trên — Homebrew tự động xử lý quarantine.
 
 ## Liên hệ & Hỗ trợ
 

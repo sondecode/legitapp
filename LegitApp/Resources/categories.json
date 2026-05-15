@@ -33,12 +33,12 @@
                 "viDescription": "Trình duyệt tối ưu cho người dùng Việt Nam, hỗ trợ tiếng Việt và các tiện ích địa phương."
             },
             {
-                "id": "openkey",
+                "id": "evkey",
                 "viDescription": "Bộ gõ tiếng Việt mã nguồn mở cho macOS, Windows và Linux, hỗ trợ Telex/VNI."
             },
             {
-                "id": "evkey",
-                "viDescription": "Bộ gõ tiếng Việt nhẹ, quen thuộc với người dùng UniKey/EVKey, hỗ trợ nhiều kiểu gõ."
+                "id": "xkey",
+                "viDescription": "Bộ gõ tiếng Việt nhẹ, hiệu suất vượt trội, hỗ trợ nhiều kiểu gõ."
             },
             {
                 "id": "gotiengviet",
