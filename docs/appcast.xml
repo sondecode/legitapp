@@ -22,6 +22,25 @@
     -->
     <item>
       <title>1.0.1</title>
+      <pubDate>Fri, 15 May 2026 21:35:34 +0700</pubDate>
+      <sparkle:version>101</sparkle:version>
+      <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <sparkle:releaseNotesLink>
+        https://github.com/sondecode/legitapp/releases/tag/v1.0.1
+      </sparkle:releaseNotesLink>
+      <description><![CDATA[
+        <h2>LegitApp 1.0.1</h2>
+        <p>Xem chi tiết tại: https://github.com/sondecode/legitapp/releases/tag/v1.0.1</p>
+      ]]></description>
+      <enclosure
+        url="https://github.com/sondecode/legitapp/releases/download/v1.0.1/LegitApp.dmg"
+        length="6513964"
+        type="application/octet-stream"
+        sparkle:edSignature="pJNp6a2IrDudPAsdngh8vgGu5PzF2woGPoVpbx/IWPdAI4bD8s8UJZ4PC+I0GoqclJYHM92vRaTFCo6gNmxSBA==" />
+    </item>
+    <item>
+      <title>1.0.1</title>
       <pubDate>Fri, 15 May 2026 13:25:31 +0700</pubDate>
       <sparkle:version>101</sparkle:version>
       <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
