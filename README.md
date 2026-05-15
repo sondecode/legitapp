@@ -28,120 +28,75 @@
 
 LegitApp là ứng dụng macOS miễn phí, mã nguồn mở giúp cài đặt và quản lý hơn 6.000 ứng dụng thông qua [Homebrew](https://brew.sh/). Xây dựng bằng [Swift](https://developer.apple.com/swift/) và [SwiftUI](https://developer.apple.com/xcode/swiftui/), được tối ưu cho người dùng Việt Nam.
 
-LegitApp được fork từ [LegitApp](https://github.com/sondecode/legitapp) và mở rộng với các tính năng dành riêng cho thị trường Việt Nam.
+LegitApp được fork từ [Applite](https://github.com/sondecode/applite) và mở rộng với các tính năng dành riêng cho thị trường Việt Nam.
 
 ## Tải về
 
 [Download DMG](https://github.com/sondecode/legitapp/releases/latest/download/LegitApp.dmg)
 
+Hoặc cài qua Homebrew:
+```bash
+brew install --cask legitapp
+```
+
 Yêu cầu tối thiểu: **macOS 14 Sonoma+**
+
+## Liên hệ & Hỗ trợ
+
+- Báo lỗi hoặc góp ý: [GitHub Issues](https://github.com/sondecode/legitapp/issues)
+- Email: [sondecode@gmail.com](mailto:sondecode@gmail.com)
+
+## Đóng góp
+
+Dự án luôn hoan nghênh sự đóng góp từ cộng đồng. Xem hướng dẫn tại [CONTRIBUTING.md](docs/CONTRIBUTING.md).
 
 ## Packages sử dụng
 
 - [Homebrew](https://github.com/homebrew)
 - [Sparkle](https://github.com/sparkle-project/Sparkle) - cập nhật ứng dụng
 - [Kingfisher](https://github.com/onevcat/Kingfisher) - tải và cache icon ứng dụng
-- [ButtonKit](https://github.com/Dean151/ButtonKit), Thomas Durand
-- [DebouncedOnChange](https://github.com/Tunous/DebouncedOnChange), Łukasz Rutkowski
-- [SwiftUI-Shimmer](https://github.com/markiv/SwiftUI-Shimmer), Vikram Kriplaney
-- [CircularProgressSwiftUI](https://github.com/ArnavMotwani/CircularProgressSwiftUI), Arnav Motwani
-- [Appcasks](https://github.com/App-Fair/appcasks/) - icon ứng dụng
+- [ButtonKit](https://github.com/Dean151/ButtonKit)
+- [DebouncedOnChange](https://github.com/Tunous/DebouncedOnChange)
+- [SwiftUI-Shimmer](https://github.com/markiv/SwiftUI-Shimmer)
+- [CircularProgressSwiftUI](https://github.com/ArnavMotwani/CircularProgressSwiftUI)
 
 ## Giấy phép
 
-LegitApp được cấp phép theo [MIT](https://choosealicense.com/licenses/mit/) License. Xem [LICENSE](LICENSE.txt) để biết thêm chi tiết.
+LegitApp được cấp phép theo [MIT](LICENSE.txt).
 
-Dự án này được xây dựng dựa trên [LegitApp](https://github.com/sondecode/legitapp) bởi Milán Várady.
+Dự án này được fork và phát triển dựa trên mã nguồn của [Applite](https://github.com/milanvarady/Applite) bởi Milán Várady.
 
-
+---
 
 # LegitApp
 
-User-friendly GUI macOS application for Homebrew Casks
+macOS Homebrew Cask manager with a Vietnamese-first experience.
 
-## Table of Contents
+## Description
 
-1. [Key Features](#key-features)
-2. [About](#about)
-3. [Screenshots](#screenshots)
-4. [Download](#download)
-5. [Contact](#contact)
-6. [Roadmap](#roadmap)
-7. [Contributing](#contributing)
-8. [Packages Used](#packages-used)
-9. [License](#license)
-10. [Alternatives](#alternatives)
+LegitApp is a free and open-source macOS application that simplifies installing and managing third-party apps via [Homebrew](https://brew.sh/). Primarily designed for the Vietnamese community, it offers a handpicked gallery of popular local and international applications.
 
 ## Key Features
 
-- Install, update, and uninstall apps with a single click
-- Clean and simple UI designed for non-technical users
-- Free and open source
-- Works with existing brew installation
-- Supports system proxy (HTTP, HTTPS, and SOCKS5)
-- Handpicked gallery of awesome apps
-
-## About
-
-LegitApp is a free and open-source macOS application that streamlines the installation and management of third-party apps using [Homebrew](https://brew.sh/). The app is built using [Swift](https://developer.apple.com/swift/) and [SwiftUI](https://developer.apple.com/xcode/swiftui/).
-
-LegitApp aims to be more of an app store for third-party apps than a full-blown homebrew GUI wrapper. The main goal of the application is to bring the convenience of [Homebrew casks](https://github.com/Homebrew/homebrew-cask) to the non-technical user. So the UI was designed with simplicity and ease of use in mind.
-
-FAQ on the [official website](https://aerolite.dev/applite/FAQ.html).
-
-## Screenshots
-
-![Discover Page Screenshot](https://github.com/user-attachments/assets/d6861ab4-d9ce-40de-982b-8940fc1d1fbf)
-![Productivity Category Screenshot](https://github.com/user-attachments/assets/e17846e0-bdbf-4ac3-b922-572ffe69acc2)
+- One-click install/update/uninstall
+- Full Vietnamese localization
+- Featured Vietnamese categories (Zalo, Cốc Cốc, CapCut...)
+- Homebrew Services management
+- System proxy support (HTTP, HTTPS, SOCKS5)
+- Open source and advertising-free
 
 ## Download
 
 [Download DMG](https://github.com/sondecode/legitapp/releases/latest/download/LegitApp.dmg)
 
-or
+Or via Homebrew:
+```bash
+brew install --cask legitapp
+```
 
-`$ brew install --cask applite`
-
-Minimum OS version: **macOS 13+**
-
-## Contact
-
-If you have any questions, feel free to e-mail me: [milan@aerolite.dev](mailto:milan@aerolite.dev)
-
-Or join the [Official Discord Server](https://discord.gg/MpDMH9cPbK).
-
-## Roadmap
-
-I don't have much time for development, but I release updates periodically.
-
-View the [roadmap](https://github.com/users/milanvarady/projects/1).
-
-## Contributing
-
-The project is open to contributions. See the [Contribution Guidelines](docs/CONTRIBUTING.md) for more information.
-
-## Packages used
-
- - [Homebrew](https://github.com/homebrew)
- - [Sparkle](https://github.com/sparkle-project/Sparkle) - app updates
- - [Ifrit](https://github.com/krisk/fuse-swift), Kusia - fuzzy search
- - [Kingfisher](https://github.com/onevcat/Kingfisher) - web image downloading and caching
- - [ButtonKit](https://github.com/Dean151/ButtonKit), Thomas Durand
- - [DebouncedOnChange](https://github.com/Tunous/DebouncedOnChange), Łukasz Rutkowski
- - [SwiftUI-Shimmer](https://github.com/markiv/SwiftUI-Shimmer), Vikram Kriplaney
- - [CircularProgressSwiftUI](https://github.com/ArnavMotwani/CircularProgressSwiftUI), Arnav Motwani
- - [Appcasks](https://github.com/App-Fair/appcasks/) ([App Fair](https://github.com/App-Fair/App) project) - app icons
+Minimum OS: **macOS 14 Sonoma+**
 
 ## License
 
-LegitApp is licensed under the [MIT](https://choosealicense.com/licenses/mit/) License. See [LICENSE](LICENSE.txt) for more details.
+Licensed under the [MIT License](LICENSE.txt). Built upon [Applite](https://github.com/milanvarady/Applite).
 
-## Alternatives
-
-- [WailBrew](https://github.com/wickenico/WailBrew) (active)
-- [Cork](https://github.com/buresdv/Cork) (paid)
-- [Brewer X](https://panini.house/brewer/) (paid)
-- [BrewMate](https://github.com/romankurnovskii/BrewMate) (electron based)
-- [Brewlet](https://github.com/zkokaja/Brewlet) (menu bar app)
-- [App Fair](https://github.com/App-Fair/App) (looks discontinued)
-- [Cakebrew](https://github.com/brunophilipe/Cakebrew) (discontinued)
