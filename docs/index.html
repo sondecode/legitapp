@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LegitApp - Quản lý ứng dụng macOS bằng tiếng Việt</title>
+  <meta name="description" content="LegitApp giúp bạn cài đặt, cập nhật và gỡ bỏ ứng dụng macOS qua Homebrew với giao diện tiếng Việt, hiện đại và dễ dùng." />
+  <meta property="og:title" content="LegitApp" />
+  <meta property="og:description" content="Cài đặt, cập nhật và quản lý app macOS qua Homebrew bằng giao diện tiếng Việt." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://github.com/user-attachments/assets/df94c6ce-7c30-418c-a860-7c7629faad45" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ink: #111318;
+      --muted: #5f6573;
+      --soft: rgba(255, 255, 255, 0.68);
+      --glass: rgba(255, 255, 255, 0.54);
+      --glass-strong: rgba(255, 255, 255, 0.78);
+      --line: rgba(16, 24, 40, 0.12);
+      --red: #df2f26;
+      --red-dark: #b9241d;
+      --blue: #1c66ff;
+      --green: #19a974;
+      --shadow: 0 24px 70px rgba(20, 28, 45, 0.16);
+      --radius: 28px;
+      --inner: min(1160px, calc(100vw - 40px));
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      line-height: 1.55;
+      background:
+        radial-gradient(circle at 8% 14%, rgba(223, 47, 38, 0.20), transparent 26rem),
+        radial-gradient(circle at 92% 8%, rgba(28, 102, 255, 0.18), transparent 28rem),
+        radial-gradient(circle at 58% 84%, rgba(25, 169, 116, 0.16), transparent 30rem),
+        linear-gradient(135deg, #f8fbff 0%, #f5f7fb 42%, #fff7f4 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.42) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.42) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+      background: rgba(248, 250, 255, 0.62);
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+    }
+
+    .nav-inner {
+      width: var(--inner);
+      height: 64px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      color: white;
+      background: linear-gradient(145deg, var(--red), #ff7a3d);
+      box-shadow: 0 10px 24px rgba(223, 47, 38, 0.28);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--ink);
+    }
+
+    .hero {
+      width: var(--inner);
+      margin: 0 auto;
+      padding: 74px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(480px, 1.35fr);
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.54);
+      color: #384052;
+      font-size: 13px;
+      font-weight: 700;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(44px, 7vw, 86px);
+      line-height: 0.96;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      margin: 22px 0 0;
+      max-width: 590px;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 15px;
+      border: 1px solid transparent;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      color: white;
+      background: linear-gradient(135deg, var(--red), #ff7042);
+      box-shadow: 0 16px 34px rgba(223, 47, 38, 0.28);
+    }
+
+    .button.primary:hover {
+      background: linear-gradient(135deg, var(--red-dark), #f45f34);
+    }
+
+    .button.secondary {
+      background: var(--glass-strong);
+      border-color: rgba(255, 255, 255, 0.78);
+      color: #222936;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+      color: #4b5364;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .meta-row span {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.64);
+      background: rgba(255, 255, 255, 0.48);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .showcase {
+      position: relative;
+      min-height: 520px;
+    }
+
+    .shot-main,
+    .shot-menu {
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.42);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
+    }
+
+    .shot-main {
+      border-radius: 30px;
+      transform: rotate(-1.2deg);
+    }
+
+    .shot-main img,
+    .shot-menu img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .shot-menu {
+      position: absolute;
+      right: 4%;
+      bottom: -8px;
+      width: min(34vw, 250px);
+      border-radius: 24px;
+      transform: rotate(2.4deg);
+    }
+
+    .floating-note {
+      position: absolute;
+      left: -24px;
+      bottom: 74px;
+      max-width: 250px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.66);
+      color: #303849;
+      font-size: 13px;
+      font-weight: 750;
+      box-shadow: 0 18px 50px rgba(20, 28, 45, 0.13);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    section {
+      width: var(--inner);
+      margin: 0 auto;
+      padding: 54px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      max-width: 680px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      max-width: 410px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .glass-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .glass-card {
+      min-height: 176px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.74);
+      border-radius: 22px;
+      background: var(--glass);
+      box-shadow: 0 18px 48px rgba(20, 28, 45, 0.08);
+      backdrop-filter: blur(22px) saturate(130%);
+      -webkit-backdrop-filter: blur(22px) saturate(130%);
+    }
+
+    .glass-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .glass-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 12px;
+      color: white;
+      background: linear-gradient(135deg, #202737, #566071);
+      font-weight: 900;
+    }
+
+    .download-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      margin: 34px 0 66px;
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.74);
+      border-radius: 28px;
+      background: rgba(17, 19, 24, 0.82);
+      color: white;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    .download-panel h2 {
+      margin: 0 0 8px;
+      font-size: clamp(26px, 4vw, 40px);
+      line-height: 1.08;
+    }
+
+    .download-panel p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .download-panel .button.secondary {
+      color: white;
+      border-color: rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    footer {
+      width: var(--inner);
+      margin: 0 auto;
+      padding: 26px 0 34px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid rgba(16, 24, 40, 0.10);
+    }
+
+    footer a {
+      color: #303849;
+      font-weight: 700;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase {
+        min-height: auto;
+        padding-bottom: 68px;
+      }
+
+      .shot-main {
+        transform: none;
+      }
+
+      .shot-menu {
+        width: 210px;
+        right: 20px;
+      }
+
+      .floating-note {
+        left: 18px;
+        bottom: 20px;
+      }
+
+      .glass-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      :root {
+        --inner: min(100vw - 28px, 1160px);
+      }
+
+      .nav-inner {
+        height: auto;
+        padding: 12px 0;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 4px;
+      }
+
+      .nav-links a {
+        padding: 7px 8px;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .actions,
+      .download-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 12px;
+      }
+
+      .glass-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase {
+        padding-bottom: 94px;
+      }
+
+      .shot-menu {
+        width: 150px;
+      }
+
+      .floating-note {
+        max-width: 190px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark">L</span>
+        <span>LegitApp</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Tính năng</a>
+        <a href="https://github.com/sondecode/legitapp">GitHub</a>
+        <a href="https://github.com/sondecode/legitapp/releases/latest">Tải về</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">macOS 14+ · Tiếng Việt · Homebrew Cask</div>
+          <h1>Tải app Mac dễ hơn, gọn hơn, đẹp hơn.</h1>
+          <p class="hero-copy">LegitApp gom cài đặt, cập nhật, gỡ app và quản lý Homebrew Services vào một giao diện trong suốt, thân thiện cho người dùng Việt.</p>
+          <div class="actions">
+            <a class="button primary" data-analytics-event="dmg_download_click" href="https://github.com/sondecode/legitapp/releases/latest/download/LegitApp.dmg">Tải LegitApp.dmg</a>
+            <a class="button secondary" href="https://github.com/sondecode/legitapp">Xem mã nguồn</a>
+          </div>
+          <div class="meta-row">
+            <span>Miễn phí</span>
+            <span>Mã nguồn mở</span>
+            <span>Không cần Terminal</span>
+          </div>
+        </div>
+
+        <div class="showcase" aria-label="Ảnh chụp giao diện LegitApp">
+          <figure class="shot-main">
+            <img src="https://github.com/user-attachments/assets/df94c6ce-7c30-418c-a860-7c7629faad45" alt="Screenshot giao diện chính LegitApp" />
+          </figure>
+          <figure class="shot-menu">
+            <img src="https://github.com/user-attachments/assets/db5f7c21-9930-4601-8b27-aa0e186e9c5a" alt="Screenshot menu bar LegitApp" />
+          </figure>
+          <div class="floating-note">Menu bar theo dõi cập nhật, services và task đang chạy.</div>
+        </div>
+      </div>
+    </header>
+
+    <section id="features">
+      <div class="section-head">
+        <h2>Một trung tâm nhỏ cho mọi app bên thứ ba trên macOS.</h2>
+        <p>Các thao tác thường phải mở Terminal nay nằm trong một cửa sổ dễ nhìn, có cache catalog, tìm kiếm nhanh và danh mục dành cho người Việt.</p>
+      </div>
+      <div class="glass-grid">
+        <article class="glass-card">
+          <div class="icon">1</div>
+          <strong>Cài đặt một chạm</strong>
+          <p>Tải app qua Homebrew Cask, theo dõi tiến trình và mở app sau khi cài.</p>
+        </article>
+        <article class="glass-card">
+          <div class="icon">2</div>
+          <strong>Cập nhật hàng loạt</strong>
+          <p>Xem app cần update, cập nhật từng app hoặc xử lý tất cả trong một lượt.</p>
+        </article>
+        <article class="glass-card">
+          <div class="icon">3</div>
+          <strong>Dành cho người Việt</strong>
+          <p>Có danh mục app Việt, bộ gõ tiếng Việt và mô tả app bằng tiếng Việt.</p>
+        </article>
+        <article class="glass-card">
+          <div class="icon">4</div>
+          <strong>Homebrew Services</strong>
+          <p>Start, stop, restart service và thao tác nhanh ngay từ menu bar.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="download-panel">
+        <div>
+          <h2>Sẵn sàng cài LegitApp?</h2>
+          <p>Tải file DMG mới nhất từ GitHub Releases. Yêu cầu macOS 14 Sonoma trở lên.</p>
+        </div>
+        <div class="actions" style="margin-top:0">
+          <a class="button primary" data-analytics-event="dmg_download_click" href="https://github.com/sondecode/legitapp/releases/latest/download/LegitApp.dmg">Tải DMG</a>
+          <a class="button secondary" href="https://github.com/sondecode/legitapp/releases/latest">Release mới nhất</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>LegitApp · Xây dựng dựa trên <a href="https://github.com/milanvarady/Applite">Applite</a> · <a href="https://github.com/sondecode/legitapp">GitHub</a> · <a href="https://github.com/sondecode/legitapp/releases">Lịch sử phiên bản</a></p>
+  </footer>
+  <script>
+    const supabaseAnalytics = {
+      url: "https://teeftkiwzakggyutlwtv.supabase.co",
+      anonKey: "sb_publishable_XUEBFFA7hiBCz8jjxXVd-Q_REjF2bG3"
+    };
+
+    function getAnonymousUserID() {
+      const storageKey = "legitapp_analytics_anonymous_user_id";
+      const existingID = localStorage.getItem(storageKey);
+      if (existingID) return existingID;
+
+      const newID = crypto.randomUUID ? crypto.randomUUID() : "10000000-1000-4000-8000-100000000000".replace(/[018]/g, character =>
+        (Number(character) ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> Number(character) / 4).toString(16)
+      );
+      localStorage.setItem(storageKey, newID);
+      return newID;
+    }
+
+    function trackAnalyticsEvent(eventName) {
+      const endpoint = `${supabaseAnalytics.url}/rest/v1/legitapp_events`;
+      const payload = JSON.stringify({
+        event_name: eventName,
+        anonymous_user_id: getAnonymousUserID(),
+        source: "website"
+      });
+
+      fetch(endpoint, {
+        method: "POST",
+        keepalive: true,
+        headers: {
+          "apikey": supabaseAnalytics.anonKey,
+          "Authorization": `Bearer ${supabaseAnalytics.anonKey}`,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal"
+        },
+        body: payload
+      }).catch(() => {});
+    }
+
+    document.querySelectorAll("[data-analytics-event]").forEach(link => {
+      link.addEventListener("click", () => {
+        trackAnalyticsEvent(link.dataset.analyticsEvent);
+      });
+    });
+  </script>
+</body>
+</html>

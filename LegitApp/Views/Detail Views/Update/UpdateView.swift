@@ -1,0 +1,68 @@
+//
+//  UpdateView.swift
+//  LegitApp
+//
+//  Created by Milán Várady on 2022. 10. 14..
+//
+
+import SwiftUI
+
+/// Update section
+struct UpdateView: View {
+    @ObservedObject var caskCollection: SearchableCaskCollection
+
+    @EnvironmentObject var caskManager: CaskManager
+
+    @State var searchText = ""
+    @State var isUpdatingAll = false
+    @State var updateAllButtonRotation = 0.0
+    
+    @State var showingGreedyUpdateConfirm = false
+    @StateObject var loadAlert = AlertManager()
+
+    var body: some View {
+        VStack {
+            if caskCollection.casks.isEmpty {
+                updateUnavailable
+                    .padding(.vertical)
+
+                Spacer()
+            } else {
+                // App grid
+                AppGridView(casks: caskCollection.casksMatchingSearch, appRole: .update)
+                    .overlay(alignment: .bottom) {
+                        if caskCollection.casksMatchingSearch.count > 1 {
+                            updateAllButton
+                                .shadow(radius: 8)
+                                .padding(.vertical)
+                        }
+                    }
+            }
+        }
+        .navigationTitle("Updates")
+        .modify { view in
+            if #available(macOS 26.0, *) {
+                view.searchable(text: $searchText, placement: .toolbarPrincipal, prompt: Text("Search apps"))
+            } else {
+                view.searchable(text: $searchText, placement: .toolbar, prompt: Text("Search apps"))
+            }
+        }
+        .task(id: searchText, debounceTime: .seconds(0.2)) {
+            await caskCollection.search(query: searchText)
+        }
+        .toolbar {
+            ToolbarItems(loadAlert: loadAlert)
+        }
+        .alertManager(loadAlert)
+    }
+}
+
+struct UpdateView_Previews: PreviewProvider {
+    static var previews: some View {
+        UpdateView(
+            caskCollection: .init(casks: Array(repeating: .dummy, count: 8))
+        )
+        .frame(width: 500, height: 400)
+        .environmentObject(CaskManager())
+    }
+}

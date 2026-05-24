@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+  <channel>
+    <title>LegitApp</title>
+    <link>https://sondecode.github.io/legitapp</link>
+    <description>LegitApp – Quản lý ứng dụng macOS</description>
+    <language>vi</language>
+
+    <!--
+      File này dùng cho GitHub Pages (docs/appcast.xml).
+      Cập nhật khi release mới: xem hướng dẫn trong docs/appcast.xml
+    -->
+
+    <item>
+      <title>1.0.0</title>
+      <pubDate>Wed, 14 May 2026 00:00:00 +0700</pubDate>
+      <sparkle:version>1</sparkle:version>
+      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <sparkle:releaseNotesLink>
+        https://github.com/sondecode/legitapp/releases/tag/v1.0.0
+      </sparkle:releaseNotesLink>
+      <enclosure
+        url="https://github.com/sondecode/legitapp/releases/download/v1.0.0/LegitApp.dmg"
+        length="0"
+        type="application/octet-stream"
+        sparkle:edSignature="REPLACE_WITH_SIGN_UPDATE_OUTPUT" />
+    </item>
+
+  </channel>
+</rss>

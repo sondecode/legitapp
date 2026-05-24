@@ -1,0 +1,431 @@
+{
+    "banner": {
+        "enabled": false,
+        "sidebar_banner": true,
+        "imageUrl": "https://i.ebayimg.com/images/g/RzYAAOSwTFZlNkr9/s-l1200.jpg",
+        "linkUrl": "https://legitpass.vn",
+        "fixedHeight": 160
+    },
+    "categories": [
+        {
+            "id": "For Vietnamese",
+            "sfSymbol": "flag.fill",
+            "casks": [
+                "zalo",
+                "viber",
+                "capcut",
+                "coccoc",
+                "xkey",
+                "evkey",
+                "gotiengviet",
+                "zoom",
+                "telegram-desktop"
+            ],
+            "apps": [
+                {
+                    "id": "zalo",
+                    "viDescription": "Ứng dụng nhắn tin, gọi điện và làm việc phổ biến tại Việt Nam."
+                },
+                {
+                    "id": "viber",
+                    "viDescription": "Ứng dụng nhắn tin và gọi điện miễn phí, phù hợp liên lạc cá nhân và nhóm."
+                },
+                {
+                    "id": "capcut",
+                    "viDescription": "Công cụ dựng video dễ dùng cho nội dung mạng xã hội, TikTok, Reels và YouTube Shorts."
+                },
+                {
+                    "id": "coccoc",
+                    "viDescription": "Trình duyệt tối ưu cho người dùng Việt Nam, hỗ trợ tiếng Việt và các tiện ích địa phương."
+                },
+                {
+                    "id": "evkey",
+                    "viDescription": "Bộ gõ tiếng Việt mã nguồn mở cho macOS, Windows và Linux, hỗ trợ Telex/VNI."
+                },
+                {
+                    "id": "xkey",
+                    "viDescription": "Bộ gõ tiếng Việt nhẹ, hiệu suất vượt trội, hỗ trợ nhiều kiểu gõ."
+                },
+                {
+                    "id": "gotiengviet",
+                    "viDescription": "Bộ gõ tiếng Việt lâu đời trên macOS, tập trung vào gõ nhanh và ổn định."
+                },
+                {
+                    "id": "zoom",
+                    "viDescription": "Ứng dụng họp trực tuyến phổ biến cho học tập, làm việc và hội thảo."
+                },
+                {
+                    "id": "telegram-desktop",
+                    "viDescription": "Ứng dụng nhắn tin đa nền tảng, hỗ trợ nhóm lớn, kênh thông báo và chia sẻ file."
+                }
+            ]
+        },
+        {
+            "id": "Browsers",
+            "sfSymbol": "network",
+            "casks": [
+                "arc",
+                "brave-browser",
+                "firefox",
+                "google-chrome",
+                "librewolf",
+                "microsoft-edge",
+                "opera",
+                "opera-gx",
+                "orion",
+                "tor-browser",
+                "vivaldi",
+                "zen-browser"
+            ]
+        },
+        {
+            "id": "Communication",
+            "sfSymbol": "text.bubble",
+            "casks": [
+                "beeper",
+                "discord",
+                "messenger",
+                "microsoft-teams",
+                "signal",
+                "telegram-desktop",
+                "threema@beta",
+                "viber",
+                "wechat",
+                "whatsapp",
+                "zoom"
+            ]
+        },
+        {
+            "id": "Productivity",
+            "sfSymbol": "gauge.high",
+            "casks": [
+                "alt-tab",
+                "antinote",
+                "bettertouchtool",
+                "cleanshot",
+                "evernote",
+                "fantastical",
+                "hazel",
+                "hazeover",
+                "maccy",
+                "notion",
+                "numi",
+                "obsidian",
+                "pastebot",
+                "raycast",
+                "rectangle",
+                "shottr",
+                "soulver",
+                "unclutter",
+                "dockdoor",
+                "xanpper",
+                "mos",
+                "monitorcontrol",
+                "maccy",
+                "macs-fan-control"
+            ]
+        },
+        {
+            "id": "AI Apps",
+            "sfSymbol": "sparkles",
+            "casks": [
+                "chatgpt",
+                "claude",
+                "google-gemini",
+                "poe",
+                "cursor",
+                "codex-app",
+                "opencat",
+                "macai",
+                "mstystudio",
+                "chatwise",
+                "chatall",
+                "anythingllm"
+            ],
+            "apps": [
+                {
+                    "id": "chatgpt",
+                    "viDescription": "Ứng dụng ChatGPT chính thức của OpenAI để trò chuyện, viết nội dung, học tập và xử lý công việc hằng ngày."
+                },
+                {
+                    "id": "claude",
+                    "viDescription": "Ứng dụng Claude chính thức của Anthropic, mạnh về đọc hiểu tài liệu, viết lách và phân tích."
+                },
+                {
+                    "id": "google-gemini",
+                    "viDescription": "Ứng dụng Gemini của Google để trò chuyện với AI và kết nối hệ sinh thái Google."
+                },
+                {
+                    "id": "poe",
+                    "viDescription": "Ứng dụng chat nhiều mô hình AI trong một nơi, tiện thử nghiệm ChatGPT, Claude và các model khác."
+                },
+                {
+                    "id": "cursor",
+                    "viDescription": "Trình soạn thảo code tích hợp AI, hỗ trợ viết, sửa và hiểu code trong dự án."
+                },
+                {
+                    "id": "codex-app",
+                    "viDescription": "Ứng dụng Codex để quản lý coding agent và tác vụ lập trình bằng AI."
+                },
+                {
+                    "id": "opencat",
+                    "viDescription": "Ứng dụng chat AI native cho macOS, hỗ trợ nhiều nhà cung cấp mô hình."
+                },
+                {
+                    "id": "macai",
+                    "viDescription": "Ứng dụng chat native cho macOS, dùng được với nhiều API LLM phổ biến."
+                },
+                {
+                    "id": "mstystudio",
+                    "viDescription": "Nền tảng AI desktop hỗ trợ mô hình local và online, phù hợp thử nghiệm nhiều workflow AI."
+                },
+                {
+                    "id": "chatwise",
+                    "viDescription": "Ứng dụng chatbot cho nhiều LLM, phù hợp người dùng muốn quản lý nhiều model trong một giao diện."
+                },
+                {
+                    "id": "chatall",
+                    "viDescription": "Ứng dụng gửi cùng một câu hỏi tới nhiều chatbot AI để so sánh kết quả."
+                },
+                {
+                    "id": "anythingllm",
+                    "viDescription": "Ứng dụng AI desktop riêng tư hơn, phù hợp làm việc với tài liệu và tri thức cá nhân."
+                }
+            ],
+            "websiteOnlyApps": []
+        },
+        {
+            "id": "Office Tools",
+            "sfSymbol": "doc.text",
+            "casks": [
+                "asana",
+                "dropbox",
+                "libreoffice",
+                "microsoft-excel",
+                "microsoft-outlook",
+                "microsoft-powerpoint",
+                "microsoft-teams",
+                "microsoft-word",
+                "onedrive",
+                "onlyoffice",
+                "openoffice",
+                "slack"
+            ]
+        },
+        {
+            "id": "Menu Bar",
+            "sfSymbol": "menubar.rectangle",
+            "casks": [
+                "airbuddy",
+                "badgeify",
+                "bartender",
+                "caffeine",
+                "coconutbattery",
+                "flux",
+                "hiddenbar",
+                "hot",
+                "istat-menus",
+                "itsycal",
+                "jordanbaird-ice",
+                "meetingbar",
+                "stats",
+                "ticktick",
+                "tomatobar",
+                "vanilla"
+            ]
+        },
+        {
+            "id": "Utilities",
+            "sfSymbol": "wrench.and.screwdriver",
+            "casks": [
+                "adobe-acrobat-reader",
+                "altserver",
+                "android-file-transfer",
+                "balenaetcher",
+                "calibre",
+                "downie",
+                "fing",
+                "handbrake",
+                "imageoptim",
+                "keepingyouawake",
+                "localsend",
+                "obs",
+                "pdf-expert",
+                "permute",
+                "pika",
+                "raspberry-pi-imager",
+                "syncthing-app",
+                "the-unarchiver",
+                "transmission",
+                "upscayl"
+            ]
+        },
+        {
+            "id": "Maintenance",
+            "sfSymbol": "wrench.adjustable",
+            "casks": [
+                "appcleaner",
+                "daisydisk",
+                "grandperspective",
+                "latest",
+                "neo-network-utility",
+                "omnidisksweeper",
+                "onyx",
+                "pearcleaner"
+            ]
+        },
+        {
+            "id": "Creative Tools",
+            "sfSymbol": "paintbrush.pointed",
+            "casks": [
+                "acron",
+                "adobe-creative-cloud",
+                "affinity-designer",
+                "affinity-photo",
+                "affinity-publisher",
+                "audacity",
+                "blender",
+                "figma",
+                "freecad",
+                "gamemaker",
+                "gimp",
+                "godot",
+                "inkscape",
+                "kdenlive",
+                "krita",
+                "scribus",
+                "sketch",
+                "unity"
+            ]
+        },
+        {
+            "id": "Media",
+            "sfSymbol": "play.tv",
+            "casks": [
+                "iina",
+                "jellyfin-media-player",
+                "kodi",
+                "netnewswire",
+                "plex",
+                "spotify",
+                "tidal",
+                "vlc"
+            ]
+        },
+        {
+            "id": "Developer Tools",
+            "sfSymbol": "desktopcomputer",
+            "casks": [
+                "android-studio",
+                "dash",
+                "docker",
+                "fork",
+                "forklift",
+                "github",
+                "gitkraken",
+                "jetbrains-toolbox",
+                "kaleidoscope",
+                "postman",
+                "rapidapi",
+                "ssh-config-editor",
+                "tower",
+                "transmit",
+                "xcodes"
+            ]
+        },
+        {
+            "id": "IDEs",
+            "sfSymbol": "chevron.left.slash.chevron.right",
+            "casks": [
+                "clion",
+                "cursor",
+                "dataspell",
+                "goland",
+                "intellij-idea",
+                "intellij-idea-ce",
+                "nova",
+                "phpstorm",
+                "pycharm",
+                "pycharm-ce",
+                "rider",
+                "rubymine",
+                "sublime-text",
+                "textmate",
+                "visual-studio-code",
+                "vscodium",
+                "zed"
+            ]
+        },
+        {
+            "id": "Terminals",
+            "sfSymbol": "terminal",
+            "casks": [
+                "alacritty",
+                "ghostty",
+                "hyper",
+                "iterm2",
+                "kitty",
+                "tabby",
+                "warp",
+                "wezterm",
+                "zoc"
+            ]
+        },
+        {
+            "id": "Virtualization",
+            "sfSymbol": "shippingbox",
+            "casks": [
+                "multipass",
+                "parallels",
+                "utm",
+                "virtualbox",
+                "vmware-fusion"
+            ]
+        },
+        {
+            "id": "Gaming",
+            "sfSymbol": "gamecontroller",
+            "casks": [
+                "battle-net",
+                "chiaki",
+                "epic-games",
+                "gog-galaxy",
+                "league-of-legends",
+                "minecraft",
+                "modrinth",
+                "openemu",
+                "prismlauncher",
+                "steam",
+                "the-battle-for-wesnoth",
+                "widelands"
+            ]
+        },
+        {
+            "id": "VPN",
+            "sfSymbol": "externaldrive.badge.icloud",
+            "casks": [
+                "cloudflare-warp",
+                "cyberghost-vpn",
+                "mullvad-vpn",
+                "nordvpn",
+                "openvpn-connect",
+                "protonvpn",
+                "tunnelbear"
+            ]
+        },
+        {
+            "id": "Password Managers",
+            "sfSymbol": "lock.square",
+            "casks": [
+                "1password",
+                "bitwarden",
+                "enpass",
+                "keepassxc",
+                "keeper-password-manager",
+                "lastpass",
+                "nordpass",
+                "roboform"
+            ]
+        }
+    ]
+}

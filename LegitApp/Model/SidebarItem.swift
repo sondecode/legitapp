@@ -1,0 +1,20 @@
+//
+//  SidebarItem.swift
+//  LegitApp
+//
+//  Created by Milán Várady on 2024.12.30.
+//
+
+import Foundation
+
+enum SidebarItem: Equatable, Hashable {
+    case home
+    case updates
+    case installed
+    case activeTasks
+    case appMigration
+    case services
+    case brew
+    case appCategory(category: CategoryViewModel)
+    case tap(tap: TapViewModel)
+}

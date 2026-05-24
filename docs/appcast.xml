@@ -1,0 +1,78 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+  <channel>
+    <title>LegitApp</title>
+    <link>https://sondecode.github.io/legitapp</link>
+    <description>LegitApp – Quản lý ứng dụng macOS</description>
+    <language>vi</language>
+
+    <!--
+      ============================================================
+      HƯỚNG DẪN CẬP NHẬT KHI RELEASE MỚI
+      ============================================================
+      1. Build DMG trong Xcode: Product → Archive → Distribute App → Direct Distribution
+      2. Ký update:
+           ./<path_to_sparkle>/bin/sign_update LegitApp.dmg
+         Copy "edSignature" từ output JSON vào sparkle:edSignature bên dưới.
+      3. Cập nhật các trường: title, sparkle:version, sparkle:shortVersionString, pubDate,
+         url (download link), length (bytes), sparkle:edSignature
+      4. Tạo GitHub Release với tag v<version>, upload LegitApp.dmg
+      5. git commit + git push → GitHub Pages tự cập nhật
+      ============================================================
+    -->
+    <item>
+      <title>1.0.2</title>
+      <pubDate>Sat, 16 May 2026 01:33:58 +0700</pubDate>
+      <sparkle:version>102</sparkle:version>
+      <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <sparkle:releaseNotesLink>
+        https://github.com/sondecode/legitapp/releases/tag/v1.0.2
+      </sparkle:releaseNotesLink>
+      <description><![CDATA[
+        <h2>LegitApp 1.0.2</h2>
+        <p>Xem chi tiết tại: https://github.com/sondecode/legitapp/releases/tag/v1.0.2</p>
+      ]]></description>
+      <enclosure
+        url="https://github.com/sondecode/legitapp/releases/download/v1.0.2/LegitApp.dmg"
+        length="7472296"
+        type="application/octet-stream"
+        sparkle:edSignature="cVtPrkXwpFFoAexOpA4mbEXcslVgpy72hlzyRqtWN5Ko6vXgsdJaIAKjHDgu+zfH+A5yqk/Po6VSAXJj2uOWBQ==" />
+    </item>
+    <item>
+      <title>1.0.2</title>
+      <pubDate>Sat, 16 May 2026 01:32:25 +0700</pubDate>
+      <sparkle:version>102</sparkle:version>
+      <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <sparkle:releaseNotesLink>
+        https://github.com/sondecode/legitapp/releases/tag/v1.0.2
+      </sparkle:releaseNotesLink>
+      <description><![CDATA[
+        <h2>LegitApp 1.0.2</h2>
+        <p>Xem chi tiết tại: https://github.com/sondecode/legitapp/releases/tag/v1.0.2</p>
+      ]]></description>
+      <enclosure
+        url="https://github.com/sondecode/legitapp/releases/download/v1.0.2/LegitApp.dmg"
+        length="7472296"
+        type="application/octet-stream"
+        sparkle:edSignature="cVtPrkXwpFFoAexOpA4mbEXcslVgpy72hlzyRqtWN5Ko6vXgsdJaIAKjHDgu+zfH+A5yqk/Po6VSAXJj2uOWBQ==" />
+    </item>
+       <item>
+        <title>1.0.0</title>
+        <pubDate>Wed, 14 May 2026 00:00:00 +0700</pubDate>
+        <sparkle:version>1</sparkle:version>
+        <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+        <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+        <sparkle:releaseNotesLink>
+          https://github.com/sondecode/legitapp/releases/tag/v1.0.0
+        </sparkle:releaseNotesLink>
+        <enclosure
+          url="https://github.com/sondecode/legitapp/releases/download/v1.0.0/LegitApp.dmg"
+          length="0"
+          type="application/octet-stream"
+          sparkle:edSignature="REPLACE_WITH_SIGN_UPDATE_OUTPUT" />
+      </item>
+
+  </channel>
+</rss>

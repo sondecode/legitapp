@@ -1,0 +1,17 @@
+//
+//  UpdateView+UpdateUnavailable.swift
+//  LegitApp
+//
+//  Created by Milán Várady on 2024.12.26.
+//
+
+import SwiftUI
+
+extension UpdateView {
+    var updateUnavailable: some View {
+        VStack {
+            Text("No Updates Available", comment: "Update view no updates available")
+                .font(.title)
+        }
+    }
+}
