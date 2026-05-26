@@ -136,11 +136,17 @@ echo ""
 # --- Step 7: Upload DMG to GitHub Release ---
 echo "🎁 Creating GitHub Release..."
 if command -v gh &>/dev/null; then
-  # Use --clobber to overwrite if release already exists
+  # Older gh releases may not support --clobber. If the release exists, delete it first.
+  if gh release view "v${VERSION}" --repo "$REPO" >/dev/null 2>&1; then
+    echo "⚠️ Release v${VERSION} already exists on GitHub — deleting to recreate..."
+    gh release delete "v${VERSION}" --repo "$REPO" --yes || true
+  fi
+
   gh release create "v${VERSION}" "$DMG_PATH" \
     --repo "$REPO" \
     --title "LegitApp v${VERSION}" \
-    --notes "Xem thay đổi tại: https://github.com/${REPO}/releases/tag/v${VERSION}" --clobber
+    --notes "Xem thay đổi tại: https://github.com/${REPO}/releases/tag/v${VERSION}"
+
   echo "✅ GitHub Release created: https://github.com/${REPO}/releases/tag/v${VERSION}"
 else
   echo "⚠️  GitHub CLI (gh) chưa được cài. Tải thủ công."

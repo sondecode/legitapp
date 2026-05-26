@@ -656,6 +656,12 @@
         }
       }
     },
+    "%@ was added to your zsh profile. Open a new Terminal window or run source ~/.zprofile to use it." : {
+
+    },
+    "%@ was installed, but it does not provide a Homebrew service to start. It will not appear in Services." : {
+
+    },
     "%lld services running" : {
 
     },
@@ -2914,6 +2920,9 @@
         }
       }
     },
+    "Default version updated" : {
+
+    },
     "Delete Homebrew cache" : {
       "comment" : "LegitApp uninstall option checkmark",
       "localizations" : {
@@ -3705,6 +3714,9 @@
         }
       }
     },
+    "Failed to install service" : {
+
+    },
     "Failed to refresh updates" : {
       "comment" : "Alert message",
       "localizations" : {
@@ -3787,6 +3799,9 @@
         }
       }
     },
+    "Failed to set default version" : {
+
+    },
     "Failed to uninstall" : {
       "comment" : "Alert message",
       "localizations" : {
@@ -3868,6 +3883,9 @@
           }
         }
       }
+    },
+    "Failed to uninstall formula" : {
+
     },
     "Failed to update %@" : {
       "comment" : "Failed app update alert title",
@@ -4753,6 +4771,9 @@
     "Install a service using Homebrew to manage it here." : {
 
     },
+    "Install custom formula" : {
+
+    },
     "Install Separate Brew" : {
       "comment" : "Brew Management button",
       "localizations" : {
@@ -4927,6 +4948,9 @@
         }
       }
     },
+    "Installed Formulae" : {
+
+    },
     "Installing" : {
       "comment" : "Install progress text",
       "localizations" : {
@@ -4967,6 +4991,9 @@
           }
         }
       }
+    },
+    "Installing %@" : {
+
     },
     "Installing dependencies" : {
       "comment" : "Brew dependency installation view title",
@@ -5701,6 +5728,19 @@
         }
       }
     },
+    "No Homebrew formula named %@ was found. Did you mean: %@?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No Homebrew formula named %1$@ was found. Did you mean: %2$@?"
+          }
+        }
+      }
+    },
+    "No Homebrew formula named %@ was found. Please check the formula name and try again." : {
+
+    },
     "No homepage found" : {
       "comment" : "No homepage found alert",
       "localizations" : {
@@ -5782,6 +5822,9 @@
           }
         }
       }
+    },
+    "No service" : {
+
     },
     "No services found" : {
       "localizations" : {
@@ -7026,6 +7069,9 @@
         }
       }
     },
+    "Set Default" : {
+
+    },
     "Shell Output" : {
       "comment" : "Shell output window title",
       "localizations" : {
@@ -7682,6 +7728,12 @@
         }
       }
     },
+    "This will stop and uninstall %@ from Homebrew. Related data files may remain on disk." : {
+
+    },
+    "This will uninstall %@ from Homebrew. Related data files may remain on disk." : {
+
+    },
     "This will uninstall all files and cache associated with LegitApp." : {
       "comment" : "Uninstall LegitApp window description",
       "localizations" : {
@@ -7935,6 +7987,12 @@
         }
       }
     },
+    "Uninstall %@" : {
+
+    },
+    "Uninstall Formula?" : {
+
+    },
     "Uninstall Homebrew" : {
       "localizations" : {
         "vi" : {
@@ -8068,6 +8126,9 @@
         }
       }
     },
+    "Uninstall Service?" : {
+
+    },
     "Uninstalling" : {
       "comment" : "Progress text",
       "extractionState" : "manual",
@@ -8109,6 +8170,9 @@
           }
         }
       }
+    },
+    "Unknown version" : {
+
     },
     "Update" : {
       "comment" : "Update LegitApp button",

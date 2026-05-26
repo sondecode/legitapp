@@ -63,3 +63,35 @@ struct BrewService: Identifiable, Hashable {
         return file.hasPrefix("/Library/LaunchDaemons/")
     }
 }
+
+/// Represents an installed Homebrew formula, including formulae that do not provide services.
+struct BrewFormula: Identifiable, Hashable {
+    var id: String { name }
+    let name: String
+    let version: String?
+
+    var isVersioned: Bool {
+        name.contains("@")
+    }
+
+    var binaryDirectory: URL {
+        BrewPaths.currentBrewDirectory
+            .appendingPathComponent("opt", isDirectory: true)
+            .appendingPathComponent(name, isDirectory: true)
+            .appendingPathComponent("bin", isDirectory: true)
+    }
+
+    static func parse(line: String) -> BrewFormula? {
+        let parts = line.split(separator: " ", omittingEmptySubsequences: true).map(String.init)
+        guard let name = parts.first else { return nil }
+        let version = parts.dropFirst().joined(separator: " ")
+        return BrewFormula(name: name, version: version.isEmpty ? nil : version)
+    }
+
+    static func parseAll(output: String) -> [BrewFormula] {
+        output
+            .components(separatedBy: .newlines)
+            .compactMap { parse(line: $0) }
+            .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+    }
+}

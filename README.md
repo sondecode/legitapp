@@ -131,8 +131,17 @@ xattr -dr com.apple.quarantine /Applications/LegitApp.app
 
 1. Mở mục `Services`.
 2. Start, stop hoặc restart từng service.
-3. Có thể thao tác nhanh từ menu bar.
-4. Trong menu bar có nút mở tất cả và tắt tất cả service.
+3. Gỡ cài đặt service khi không còn dùng; LegitApp sẽ dừng service trước rồi chạy `brew uninstall`.
+4. Có thể thao tác nhanh từ menu bar.
+5. Trong menu bar có nút mở tất cả và tắt tất cả service.
+
+### Kế Hoạch Quản Lý Version Service
+
+- Cho phép chọn version khi cài service, ví dụ `postgresql@16`, `postgresql@17`, `php@8.3`, `php@8.4`.
+- Hiển thị version đang được link mặc định bằng `brew list --versions` và `brew info`.
+- Thêm thao tác đặt version mặc định bằng `brew unlink <formula>` và `brew link --force --overwrite <formula@version>` khi phù hợp.
+- Tự cập nhật shell profile như `~/.zshrc` bằng block được quản lý bởi LegitApp, ví dụ thêm `PATH`, `LDFLAGS`, `CPPFLAGS`, `PKG_CONFIG_PATH` theo version mặc định.
+- Trước khi sửa `~/.zshrc`, tạo backup và chỉ cập nhật nội dung nằm giữa marker của LegitApp để không ghi đè cấu hình thủ công của người dùng.
 
 ### Di Chuyển Sang Máy Khác
 
