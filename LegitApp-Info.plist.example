@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SUFeedURL</key>
+	<string>https://sondecode.github.io/legitapp/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>pjbyNla3wizs5XZ8CPdCOVKjlW81cPbAa3aZ5SoFDEE=</string>
+	<key>LegitAppCategoriesURL</key>
+	<string>https://raw.githubusercontent.com/sondecode/legitapp/main/LegitApp/Resources/categories.json</string>
+	<key>LegitAppSupabaseURL</key>
+	<string>https://your-project-id.supabase.co</string>
+	<key>LegitAppSupabaseAnonKey</key>
+	<string>your-supabase-anon-key</string>
+</dict>
+</plist>
