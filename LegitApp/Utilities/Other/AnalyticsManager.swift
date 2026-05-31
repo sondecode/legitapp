@@ -33,12 +33,14 @@ struct AnalyticsManager {
     private var supabaseURL: URL? {
         guard
             let rawValue = Bundle.main.object(forInfoDictionaryKey: "LegitAppSupabaseURL") as? String,
-            !rawValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            !rawValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+            let url = URL(string: rawValue),
+            url.scheme == "https"        // reject non-HTTPS configurations
         else {
             return nil
         }
 
-        return URL(string: rawValue)
+        return url
     }
 
     private var supabaseAnonKey: String? {
@@ -94,8 +96,15 @@ struct AnalyticsManager {
             return false
         }
 
+        // Client-side dedup: skip cask events fired for the same (event, cask) within 60 s.
+        // This prevents repeated rapid triggers (e.g. a script looping installs).
+        if !isBeyondCooldown(eventName, caskID: cask?.id) {
+            logger.debug("Skipping analytics event within cooldown window: \(eventName.rawValue)")
+            return false
+        }
+
         let endpoint = supabaseURL.appendingPathComponent("rest/v1/legitapp_events")
-        var request = URLRequest(url: endpoint)
+        var request = URLRequest(url: endpoint, timeoutInterval: 15)
         request.httpMethod = "POST"
         request.setValue(supabaseAnonKey, forHTTPHeaderField: "apikey")
         request.setValue("Bearer \(supabaseAnonKey)", forHTTPHeaderField: "Authorization")
@@ -130,11 +139,37 @@ struct AnalyticsManager {
                 return false
             }
 
+            recordSent(eventName, caskID: cask?.id)
             return true
         } catch {
             logger.error("Failed to send Supabase analytics event: \(error.localizedDescription)")
             return false
         }
+    }
+
+    // MARK: - Cooldown helpers
+
+    /// Cooldown window for cask events: 60 seconds per (eventName, caskID) pair.
+    private static let caskEventCooldown: TimeInterval = 60
+
+    /// UserDefaults key for the last-sent timestamp of a given (event, cask) pair.
+    private func cooldownKey(_ eventName: AnalyticsEventName, caskID: String?) -> String {
+        "analytics_cooldown_\(eventName.rawValue)_\(caskID ?? "")"
+    }
+
+    /// Returns `true` when enough time has passed to send this event again.
+    /// `app_open` is managed separately via `analyticsLastAppOpenDate`; skip cooldown for it.
+    private func isBeyondCooldown(_ eventName: AnalyticsEventName, caskID: String?) -> Bool {
+        guard eventName != .appOpen else { return true }
+        let key = cooldownKey(eventName, caskID: caskID)
+        guard let lastSent = defaults.object(forKey: key) as? Date else { return true }
+        return Date().timeIntervalSince(lastSent) >= Self.caskEventCooldown
+    }
+
+    /// Stamps the current time for the given (event, cask) pair.
+    private func recordSent(_ eventName: AnalyticsEventName, caskID: String?) {
+        guard eventName != .appOpen else { return }
+        defaults.set(Date(), forKey: cooldownKey(eventName, caskID: caskID))
     }
 }
 
