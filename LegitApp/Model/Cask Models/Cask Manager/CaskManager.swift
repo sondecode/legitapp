@@ -30,10 +30,10 @@ final class CaskManager: ObservableObject {
     let allCasks = SearchableCaskCollection()
     let installedCasks = SearchableCaskCollection()
     let outdatedCasks = SearchableCaskCollection()
-    var taps: [TapViewModel] = []
+    @Published var taps: [TapViewModel] = []
 
     // Precompiled cask category dicts
-    var categories: [CategoryViewModel] = []
+    @Published var categories: [CategoryViewModel] = []
     @Published var bannerConfig: BannerConfig?
 
     static let logger = Logger(
@@ -41,33 +41,5 @@ final class CaskManager: ObservableObject {
         category: String(describing: CaskManager.self)
     )
 
-    init() {
-        // Load categories at init so the view can display them
-        do {
-            let categories = try loadCategoryJSON()
-            let categoryViewModels = categories.map {
-                CategoryViewModel(name: $0.id, sfSymbol: $0.sfSymbol, casks: [], casksCoupled: [])
-            }
-
-            self.categories = categoryViewModels
-        } catch {
-            self.alert.show(title: "Couldn't load categories")
-            Self.logger.error("Failed to load categories: \(error.localizedDescription)")
-        }
-    }
-
-    func loadCategoryJSON() throws -> [Category] {
-        let decoder = JSONDecoder()
-        guard let url = Bundle.main.url(forResource: "categories", withExtension: "json") else {
-            throw CaskLoadError.failedToLoadCategoryJSON
-        }
-
-        let data = try Data(contentsOf: url)
-        // Support both wrapped {banner, categories} and legacy plain array
-        if let catalog = try? decoder.decode(CatalogData.self, from: data) {
-            self.bannerConfig = catalog.banner
-            return catalog.categories
-        }
-        return try decoder.decode([Category].self, from: data)
-    }
+    init() {}
 }

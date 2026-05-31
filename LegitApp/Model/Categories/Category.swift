@@ -10,7 +10,7 @@ import Foundation
 typealias CategoryId = String
 
 /// App category object
-struct Category: Decodable, Identifiable {
+struct Category: Codable, Identifiable {
     /// Category id
     let id: String
     /// List of cask ids
@@ -41,12 +41,12 @@ struct Category: Decodable, Identifiable {
     }
 }
 
-struct CategoryAppMetadata: Decodable {
+struct CategoryAppMetadata: Codable {
     let id: CaskId
     let viDescription: String
 }
 
-struct WebsiteOnlyApp: Decodable {
+struct WebsiteOnlyApp: Codable {
     let id: CaskId
     let name: String
     let viDescription: String
@@ -54,7 +54,7 @@ struct WebsiteOnlyApp: Decodable {
 }
 
 /// Banner advertisement configuration loaded from categories.json
-struct BannerConfig: Decodable {
+struct BannerConfig: Codable {
     /// Whether the menu bar banner is enabled
     let enabled: Bool
     /// Whether the sidebar banner (replacing logo) is enabled
@@ -76,7 +76,7 @@ struct BannerConfig: Decodable {
 }
 
 /// Top-level wrapper for categories.json
-struct CatalogData: Decodable {
+struct CatalogData: Codable {
     let banner: BannerConfig?
     let categories: [Category]
 }

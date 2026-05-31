@@ -177,7 +177,7 @@ final class CaskDataCoordinator {
         .appendingPathComponent("LegitApp", conformingTo: .directory)
         .appendingPathComponent("categories_remote.json", conformingTo: .json)
 
-    /// Loads catalog data (banner + categories) — tries remote GitHub URL first, then cache, then bundle
+    /// Loads catalog data (banner + categories) — tries Supabase first, then remote JSON/cache/bundle.
     private func loadCatalogData() async throws -> CatalogData {
         let decoder = JSONDecoder()
         func decode(_ data: Data) throws -> CatalogData {
@@ -189,15 +189,26 @@ final class CaskDataCoordinator {
             return CatalogData(banner: nil, categories: categories)
         }
 
+        // 1. Try Supabase database catalog.
+        do {
+            if let catalog = try await loadCatalogDataFromDatabase() {
+                try? cacheCatalogData(catalog)
+                logger.info("Loaded catalog from Supabase")
+                return catalog
+            }
+        } catch {
+            logger.warning("Supabase catalog fetch failed: \(error.localizedDescription)")
+        }
+
         #if DEBUG
-        // In debug builds, always use the bundled local JSON to make testing deterministic
+        // In debug fallback, use bundled local JSON to keep iteration deterministic when Supabase is unavailable.
         if let url = Bundle.main.url(forResource: "categories", withExtension: "json") {
             let data = try Data(contentsOf: url)
             return try decode(data)
         }
         #endif
 
-        // 1. Try remote URL from Info.plist
+        // 2. Try remote URL from Info.plist.
         if let urlString = Bundle.main.infoDictionary?["LegitAppCategoriesURL"] as? String,
            let remoteURL = URL(string: urlString) {
             do {
@@ -216,7 +227,7 @@ final class CaskDataCoordinator {
             }
         }
 
-        // 2. Fallback: cached remote version
+        // 3. Fallback: cached remote version.
         if FileManager.default.fileExists(atPath: Self.categoriesCacheURL.path),
            let data = try? Data(contentsOf: Self.categoriesCacheURL),
            let catalog = try? decode(data) {
@@ -224,7 +235,7 @@ final class CaskDataCoordinator {
             return catalog
         }
 
-        // 3. Fallback: bundle (always available)
+        // 4. Fallback: bundle (always available).
         guard let url = Bundle.main.url(forResource: "categories", withExtension: "json") else {
             throw CaskLoadError.failedToLoadCategoryJSON
         }
@@ -232,6 +243,79 @@ final class CaskDataCoordinator {
         let data = try Data(contentsOf: url)
         return try decode(data)
     }
+
+    private func cacheCatalogData(_ catalog: CatalogData) throws {
+        let cacheDir = Self.categoriesCacheURL.deletingLastPathComponent()
+        try FileManager.default.createDirectory(at: cacheDir, withIntermediateDirectories: true)
+        let data = try JSONEncoder().encode(catalog)
+        try data.write(to: Self.categoriesCacheURL)
+    }
+
+    private func loadCatalogDataFromDatabase() async throws -> CatalogData? {
+        guard
+            let supabaseURL = supabaseURL,
+            let supabaseAnonKey = supabaseAnonKey
+        else {
+            return nil
+        }
+
+        var components = URLComponents(url: supabaseURL.appendingPathComponent("rest/v1/legitapp_catalog"), resolvingAgainstBaseURL: false)
+        components?.queryItems = [
+            URLQueryItem(name: "select", value: "data"),
+            URLQueryItem(name: "limit", value: "1")
+        ]
+
+        guard let endpoint = components?.url else {
+            return nil
+        }
+
+        var request = URLRequest(url: endpoint, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 6)
+        request.setValue(supabaseAnonKey, forHTTPHeaderField: "apikey")
+        request.setValue("Bearer \(supabaseAnonKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("LegitApp/\(Bundle.main.appVersion)", forHTTPHeaderField: "User-Agent")
+
+        let session = URLSession(configuration: NetworkProxyManager.getURLSessionConfiguration())
+        let (data, response) = try await session.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse else {
+            return nil
+        }
+
+        guard (200..<300).contains(httpResponse.statusCode) else {
+            logger.warning("Supabase catalog returned status \(httpResponse.statusCode).")
+            return nil
+        }
+
+        let rows = try JSONDecoder().decode([SupabaseCatalogRow].self, from: data)
+        return rows.first?.data
+    }
+
+    private var supabaseURL: URL? {
+        guard
+            let rawValue = Bundle.main.object(forInfoDictionaryKey: "LegitAppSupabaseURL") as? String,
+            !rawValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        else {
+            return nil
+        }
+
+        return URL(string: rawValue)
+    }
+
+    private var supabaseAnonKey: String? {
+        guard
+            let rawValue = Bundle.main.object(forInfoDictionaryKey: "LegitAppSupabaseAnonKey") as? String,
+            !rawValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        else {
+            return nil
+        }
+
+        return rawValue
+    }
+}
+
+private struct SupabaseCatalogRow: Decodable {
+    let data: CatalogData
 }
 
 /// Structure containing all loaded cask data
