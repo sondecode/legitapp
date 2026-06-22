@@ -149,80 +149,6 @@ xattr -dr com.apple.quarantine /Applications/LegitApp.app
 2. Export danh sách app đã cài.
 3. Trên máy mới, import danh sách đó để cài lại.
 
-## Dành Cho Lập Trình Viên
-
-Clone project:
-
-```bash
-git clone https://github.com/sondecode/legitapp.git
-cd legitapp
-```
-
-Mở bằng Xcode:
-
-```bash
-open LegitApp.xcodeproj
-```
-
-Build bằng command line:
-
-```bash
-xcodebuild -project LegitApp.xcodeproj -scheme Applite -destination 'platform=macOS' build
-```
-
-Tạo package tự ký và DMG:
-
-```bash
-./scripts/build-package.sh
-```
-
-Tạo DMG giao diện tiếng Việt từ app đã build:
-
-```bash
-./scripts/create-vietnamese-dmg.sh /path/to/LegitApp.app dist/LegitApp.dmg
-```
-
-Ký DMG nếu có Developer ID:
-
-```bash
-./scripts/create-vietnamese-dmg.sh /path/to/LegitApp.app dist/LegitApp.dmg --sign "Developer ID Application: Ten Cua Ban (TEAMID)"
-```
-
-Thiết lập Supabase Analytics:
-
-1. Tạo project Supabase.
-2. Chạy file SQL `docs/supabase-analytics.sql` trong Supabase SQL Editor.
-3. Điền `LegitAppSupabaseURL` và `LegitAppSupabaseAnonKey` trong `LegitApp-Info.plist`.
-4. App tự động gửi log ẩn danh tối thiểu để thống kê và hạn chế spam. Người dùng vẫn có thể tắt tại `Settings` -> `Analytics` -> `Send security and usage logs`.
-
-Các view thống kê có sẵn:
-
-- `legitapp_daily_active_users`: người dùng hoạt động hằng ngày.
-- `legitapp_monthly_active_users`: người dùng hoạt động hằng tháng.
-- `legitapp_download_clicks`: lượt bấm tải DMG trên website.
-- `legitapp_top_installed_casks`: app được cài qua LegitApp nhiều nhất.
-- `legitapp_uninstall_counts`: app bị gỡ qua LegitApp nhiều nhất.
-- `legitapp_event_counts`: tổng số event theo loại.
-
-Lượt tải DMG công khai vẫn nên lấy từ GitHub Releases hoặc bổ sung tracking click trên website tải app, vì app chưa chạy thì chưa thể gửi event vào Supabase.
-
-Phát hành release và cập nhật appcast/Homebrew tap:
-
-```bash
-./scripts/release.sh <version> <path-to-dmg>
-```
-
-## Cấu Trúc Chính
-
-- `LegitApp/Views`: giao diện SwiftUI.
-- `LegitApp/Model`: model, cask manager, service manager, preferences.
-- `LegitApp/Utilities`: shell runner, Homebrew setup, proxy, migration.
-- `LegitApp/Resources/categories.json`: danh mục app, mô tả tiếng Việt và website-only apps.
-- `Localizable.xcstrings`: string catalog.
-- `LegitApp/Resources/*.lproj/Localizable.strings`: bản dịch theo ngôn ngữ.
-- `scripts`: công cụ build, ký, tạo DMG và release.
-- `docs`: landing page, appcast và tài liệu đóng góp.
-
 ## Công Nghệ Sử Dụng
 
 - [Swift](https://developer.apple.com/swift/)
@@ -252,7 +178,7 @@ Xem thêm tại [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md).
 ## Liên Hệ Và Hỗ Trợ
 
 - GitHub Issues: [sondecode/legitapp/issues](https://github.com/sondecode/legitapp/issues)
-- Email: [sondecode@gmail.com](mailto:sondecode@gmail.com)
+- Email: [trson25@gmail.com](mailto:trson25@gmail.com)
 
 ## Giấy Phép
 
